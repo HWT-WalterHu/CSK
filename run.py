@@ -94,7 +94,9 @@ if __name__ == '__main__':
     torch.backends.cudnn.deterministic = True
 
     if not args.do_train:
+        print('doing testing')
         test_entry()
     else:
+        print('doing training')
         train_entry()
 
