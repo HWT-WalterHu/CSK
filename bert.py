@@ -28,6 +28,8 @@ class Config(object):
         self.tokenizer = BertTokenizer.from_pretrained(self.bert_path, do_lower_case=True)
         self.hidden_size = args.hidden_size
         self.max_length = args.max_length
+        self.steps = args.steps
+        self.load_param = args.load_param
 
 
 class Model(nn.Module):

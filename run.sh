@@ -16,7 +16,7 @@ if [ $# == 0 ]; then
     --do_train=True \
     --max_length=${MAX_LENGTH} \
     --batch_size=16 \
-    --test_batch=1000
+    --test_batch=1000 \
     --epochs=10 \
     --seed=2021
 elif [ $1 == "predict" ]; then

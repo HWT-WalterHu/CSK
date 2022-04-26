@@ -87,7 +87,7 @@ def test_entry():
 
 if __name__ == '__main__':
     config = Config(args)
-
+    print(config)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
