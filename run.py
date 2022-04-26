@@ -27,6 +27,8 @@ parser.add_argument("--epochs", default=10, type=int, help="Total number of trai
 parser.add_argument('--seed', type=int, default=1, help="random seed for initialization")
 parser.add_argument('--hidden_size', type=int, default=768,  help="random seed for initialization")
 parser.add_argument('--steps', type=str, default='4,6,8',  help="steps to reduce lr")
+parser.add_argument('--load_param', type=str, default='output/save_dict',  help="path of finetune model")
+
 args = parser.parse_args()
 args.steps = [int(i) for i in args.steps.split(',')]
 
@@ -53,6 +55,8 @@ def train_entry():
     print("Time usage:", time_dif)
     # train
     model = Model(config).to(config.device)
+    if config.load_param is not None:
+        model.load_state_dict(torch.load(config.load_param + "/model.ckpt"))
 
     train(config, model, train_iter, dev_iter, test_iter)
 
