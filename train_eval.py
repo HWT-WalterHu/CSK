@@ -40,7 +40,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
                 msg = 'Iter: {0:>6},  Train Loss: {1:>5.2},  Time: {2}'
                 print(msg.format(total_batch, loss.item(), time_dif))
                 print("loss", total_batch, loss.item(), dev_loss)
-                if dev_loss < dev_best_loss:
+                if dev_loss < dev_best_loss or True:
                     print("save", dev_loss)
                     torch.save(model.state_dict(), config.save_path + "model.ckpt")
                     dev_best_loss = dev_loss
