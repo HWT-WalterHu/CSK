@@ -31,6 +31,7 @@ parser.add_argument('--load_param', type=str, default='output/save_dict',  help=
 
 args = parser.parse_args()
 args.steps = [int(i) for i in args.steps.split(',')]
+os.makedirs(args.output_dir, exist_ok=True)
 
 def train_entry():
     start_time = time.time()
