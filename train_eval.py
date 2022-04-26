@@ -8,7 +8,7 @@ import time
 import json
 from utils import get_time_dif, gettoken
 from transformers import AdamW
-
+from tqdm import tqdm
 
 def train(config, model, train_iter, dev_iter, test_iter):
     start_time = time.time()
@@ -20,7 +20,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
     model.train()
     for epoch in range(config.num_epochs):
         print('Epoch [{}/{}]'.format(epoch + 1, config.num_epochs))
-        for i, batches in enumerate(train_iter):
+        for i, batches in tqdm(enumerate(train_iter)):
             model.zero_grad()
             sent, _, labels = batches
             input_ids, attention_mask, type_ids, position_ids = gettoken(config, sent)
