@@ -32,6 +32,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
             loss = F.binary_cross_entropy(pmi, labels.float(), reduction='sum')
             loss.backward()
             optimizer.step()
+            lr_scheduler.step()
             total_batch += 1
             if total_batch % config.test_batch == 1 and total_batch>1:
                 time_dif = get_time_dif(start_time)
