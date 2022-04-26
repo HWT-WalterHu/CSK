@@ -32,7 +32,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
             loss.backward()
             optimizer.step()
             total_batch += 1
-            if total_batch % config.test_batch == 1:
+            if total_batch % config.test_batch == 1 and total_batch>1:
                 time_dif = get_time_dif(start_time)
                 print("test:")
                 f1, _, dev_loss, predict, ground, sents = evaluate(config, model, dev_iter, test=False)
