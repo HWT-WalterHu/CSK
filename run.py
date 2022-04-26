@@ -11,7 +11,7 @@ import torch
 import json
 
 parser = argparse.ArgumentParser(description='Salient triple classification')
-parser.add_argument("--do_train", type=bool, default=True, help="Whether to run training.",)
+parser.add_argument("--do_train", type=int, default=1, help="Whether to run training.",)
 parser.add_argument("--test_batch", default=200, type=int, help="Test every X updates steps.")
 
 parser.add_argument("--data_dir", default="data", type=str, help="The task data directory.")
