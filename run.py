@@ -32,6 +32,7 @@ parser.add_argument('--load_param', type=str, default='output/save_dict',  help=
 args = parser.parse_args()
 args.steps = [int(i) for i in args.steps.split(',')]
 os.makedirs(args.output_dir, exist_ok=True)
+print(args)
 
 def train_entry():
     start_time = time.time()
@@ -89,7 +90,6 @@ def test_entry():
 
 if __name__ == '__main__':
     config = Config(args)
-    print(config)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)

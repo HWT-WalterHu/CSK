@@ -46,6 +46,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
                     torch.save(model.state_dict(), config.save_path + "model.ckpt")
                     dev_best_loss = dev_loss
                 model.train()
+            torch.save(model.state_dict(), config.save_path + "model.ckpt")
 
     test(config, model, test_iter)
 
