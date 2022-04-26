@@ -15,8 +15,8 @@ if [ $# == 0 ]; then
     --output_dir=${OUTPUT_DIR} \
     --do_train=True \
     --max_length=${MAX_LENGTH} \
-    --batch_size=4 \
-    --test_batch=2
+    --batch_size=16 \
+    --test_batch= 1000 \
     --epochs=10 \
     --seed=2021
 elif [ $1 == "predict" ]; then
