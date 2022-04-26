@@ -14,6 +14,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
     start_time = time.time()
     model.train()
     optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate)
+    lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=config.steps, gamma=0.1)
 
     total_batch = 0  # 记录进行到多少batch
     dev_best_loss = 1e12

@@ -26,9 +26,9 @@ parser.add_argument("--dropout", default=0.1, type=float, help="Drop out rate")
 parser.add_argument("--epochs", default=10, type=int, help="Total number of training epochs to perform.")
 parser.add_argument('--seed', type=int, default=1, help="random seed for initialization")
 parser.add_argument('--hidden_size', type=int, default=768,  help="random seed for initialization")
-
+parser.add_argument('--steps', type=str, default='4,6,8',  help="steps to reduce lr")
 args = parser.parse_args()
-
+args.steps = [int(i) for i in args.steps.split(',')]
 
 def train_entry():
     start_time = time.time()
