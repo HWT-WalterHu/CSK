@@ -70,16 +70,17 @@ def test_entry():
     model.eval()
     loader = DataLoader(test_data, shuffle=False, batch_size=config.batch_size)
     predicts = []
-    for i, batches in enumerate(loader):
-        sent, triple_id, _ = batches
-        input_ids, attention_mask, type_ids, position_ids = gettoken(config, sent)
-        input_ids, attention_mask, type_ids = \
-            input_ids.to(config.device), attention_mask.to(config.device), type_ids.to(config.device)
-        position_ids = position_ids.to(config.device)
-        pmi = model(input_ids, attention_mask, type_ids, position_ids)
-        bires = torch.where(pmi > 0.5, torch.tensor([1]).cuda(), torch.tensor([0]).cuda())
-        for b, t in zip(bires, triple_id):
-            predicts.append({"salience": b.item(), "triple_id": t})
+    with torch.no_grad():
+        for i, batches in enumerate(loader):
+            sent, triple_id, _ = batches
+            input_ids, attention_mask, type_ids, position_ids = gettoken(config, sent)
+            input_ids, attention_mask, type_ids = \
+                input_ids.to(config.device), attention_mask.to(config.device), type_ids.to(config.device)
+            position_ids = position_ids.to(config.device)
+            pmi = model(input_ids, attention_mask, type_ids, position_ids)
+            bires = torch.where(pmi > 0.5, torch.tensor([1]).cuda(), torch.tensor([0]).cuda())
+            for b, t in zip(bires, triple_id):
+                predicts.append({"salience": b.item(), "triple_id": t})
 
     with open(config.save_path + "xx_result.jsonl", "w") as f:
         for t in predicts:

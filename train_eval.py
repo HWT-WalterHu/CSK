@@ -54,7 +54,7 @@ def evaluate(config, model, data_iter, test=True):
     loss_total = 0
     predicts, sents, grounds, all_bires = [], [], [], []
     with torch.no_grad():
-        for i, batches in enumerate(data_iter):
+        for i, batches in tqdm(enumerate(data_iter)):
             sent, _, labels = batches
             input_ids, attention_mask, type_ids, position_ids = gettoken(config,sent)
             input_ids, attention_mask, type_ids, labels = \
